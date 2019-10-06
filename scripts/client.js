@@ -5,10 +5,12 @@
 $(readyNow);
 
 function readyNow(){
-    writeToDom();
+    userInputs();
+    dataTable();
+
 }
 
-function writeToDom(){
+function userInputs(){
     let body = $('body');
 
     //create header
@@ -16,7 +18,7 @@ function writeToDom(){
 
     //create inputs and button with event listener
     body.append(`<h3>Add Employee</h3>`);
-
+    body.append(`<dive class="inputClass" id="inputDiv">`);
     body.append(inputCreator('firstName', 'First Name', 'text'));
     body.append(inputCreator('lastName', 'Last Name', 'text'));
     body.append(inputCreator('employeeId', 'ID', 'number'));
@@ -24,9 +26,39 @@ function writeToDom(){
     body.append(inputCreator('employeeSalary', 'Annual Salary', 'text'));
     
     body.append(`<button class="inputClass" id="submitButton">Submit</button>`);
+    $('#submitButton').click(function(){
+        //submit button actions
+        addEmployee();
+        console.log('submit click');
+        
+    });
+    body.append(`</div>`);
 
 }
 
 function inputCreator(inputId, inputName, type){
     return `<input class="inputClass" id="${inputId}Input" type="${type}" placeholder="${inputName}"/>`
+}
+
+function dataTable(){
+    let body = $('body');
+
+    // create table with header labels
+    body.append(`<h3>Employees</h3>`);
+    body.append(`<table><tr><th>First Name</th><th>Last Name</th><th>ID</th><th>Title</th><th>Annual Salary</th><th></th></tr>`);
+
+    // end table
+    body.append(`</table>`);
+
+    // display total monthly cost
+    body.append(`<h3 id="totalMonthly">Total Monthly Placeholder</h3>`);
+}
+
+function addEmployee(){
+    //$('table').add($('tr')).data({firstName: $('#firstNameInput').val(), lastName: $('#lastNameInput').val(), employeeId: $('#employeeIdInput').val(), employeeTitle: $('#employeeTitleInput').val(), employeeSalary: $('#employeeSalaryInput').val()});
+
+    $('table').append(`<tr></tr>`);
+    $('tr').last().data({firstName: $('#firstNameInput').val(), lastName: $('#lastNameInput').val(), employeeId: $('#employeeIdInput').val(), employeeTitle: $('#employeeTitleInput').val(), employeeSalary: $('#employeeSalaryInput').val()});
+    console.log('in addEmployee', $('tr').last().data());
+    $('tr').last().append(`<td>${$('#firstNameInput').val()}</td><td>${$('#lastNameInput').val()}</td><td>${$('#employeeIdInput').val()}</td><td>${$('#employeeTitleInput').val()}</td><td>${$('#employeeSalaryInput').val()}</td><td></td>`);
 }

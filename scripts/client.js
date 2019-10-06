@@ -64,7 +64,7 @@ function addEmployee(){
     $('table').append(`<tr class="employee"></tr>`);
     $('tr').last().data({firstName: $('#firstNameInput').val(), lastName: $('#lastNameInput').val(), employeeId: $('#employeeIdInput').val(), employeeTitle: $('#employeeTitleInput').val(), employeeSalary: $('#employeeSalaryInput').val()});
     console.log('in addEmployee', $('tr').last().data());
-    $('tr').last().append(`<td>${$('#firstNameInput').val()}</td><td>${$('#lastNameInput').val()}</td><td>${$('#employeeIdInput').val()}</td><td>${$('#employeeTitleInput').val()}</td><td>${$('#employeeSalaryInput').val()}</td><td><button class="deleteButton">Delete</button></td>`);
+    $('tr').last().append(`<td>${$('#firstNameInput').val()}</td><td>${$('#lastNameInput').val()}</td><td>${$('#employeeIdInput').val()}</td><td>${$('#employeeTitleInput').val()}</td><td>${accounting.formatMoney($('#employeeSalaryInput').val())}</td><td><button class="deleteButton">Delete</button></td>`);
     monthlyCalculator();
 }
 
@@ -84,7 +84,7 @@ function monthlyCalculator(){
         // console.log('third log', monthlyCost);
         
     });
-    $('#totalMonthly').text(`Total Monthly: $${monthlyCost}`);
+    $('#totalMonthly').text(`Total Monthly: ${accounting.formatMoney(monthlyCost)}`);
 
     if(monthlyCost > monthlyCostLimit){
         $('#totalMonthly').parent().css("background-color", "red");

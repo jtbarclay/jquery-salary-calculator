@@ -65,6 +65,14 @@ function addEmployee(){
     $('tr').last().data({firstName: $('#firstNameInput').val(), lastName: $('#lastNameInput').val(), employeeId: $('#employeeIdInput').val(), employeeTitle: $('#employeeTitleInput').val(), employeeSalary: $('#employeeSalaryInput').val()});
     console.log('in addEmployee', $('tr').last().data());
     $('tr').last().append(`<td>${$('#firstNameInput').val()}</td><td>${$('#lastNameInput').val()}</td><td>${$('#employeeIdInput').val()}</td><td>${$('#employeeTitleInput').val()}</td><td>${accounting.formatMoney($('#employeeSalaryInput').val())}</td><td><button class="deleteButton">Delete</button></td>`);
+
+    //empty inputs
+    $('#firstNameInput').val('');
+    $('#lastNameInput').val('');
+    $('#employeeIdInput').val('');
+    $('#employeeTitleInput').val('');
+    $('#employeeSalaryInput').val('');
+
     monthlyCalculator();
 }
 

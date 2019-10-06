@@ -8,6 +8,7 @@ function readyNow(){
     userInputs();
     dataTable();
 
+    $('tbody').on('click', '.deleteButton', deleteButtonHandler);
 }
 
 function userInputs(){
@@ -60,5 +61,10 @@ function addEmployee(){
     $('table').append(`<tr></tr>`);
     $('tr').last().data({firstName: $('#firstNameInput').val(), lastName: $('#lastNameInput').val(), employeeId: $('#employeeIdInput').val(), employeeTitle: $('#employeeTitleInput').val(), employeeSalary: $('#employeeSalaryInput').val()});
     console.log('in addEmployee', $('tr').last().data());
-    $('tr').last().append(`<td>${$('#firstNameInput').val()}</td><td>${$('#lastNameInput').val()}</td><td>${$('#employeeIdInput').val()}</td><td>${$('#employeeTitleInput').val()}</td><td>${$('#employeeSalaryInput').val()}</td><td></td>`);
+    $('tr').last().append(`<td>${$('#firstNameInput').val()}</td><td>${$('#lastNameInput').val()}</td><td>${$('#employeeIdInput').val()}</td><td>${$('#employeeTitleInput').val()}</td><td>${$('#employeeSalaryInput').val()}</td><td><button class="deleteButton">Delete</button></td>`);
+}
+
+function deleteButtonHandler(){
+    console.log('in deleteButtonHandler');
+    $(this).parent().parent().remove();
 }

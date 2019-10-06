@@ -9,6 +9,7 @@ const monthlyCostLimit = 20000;
 function readyNow(){
     userInputs();
     dataTable();
+    monthlyCalculator();
 
     $('tbody').on('click', '.deleteButton', deleteButtonHandler);
 }
@@ -83,7 +84,7 @@ function monthlyCalculator(){
         // console.log('third log', monthlyCost);
         
     });
-    $('#totalMonthly').text(monthlyCost);
+    $('#totalMonthly').text(`Total Monthly: $${monthlyCost}`);
 
     if(monthlyCost > monthlyCostLimit){
         $('#totalMonthly').parent().css("background-color", "red");

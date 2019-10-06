@@ -24,7 +24,7 @@ function userInputs(){
     body.append(inputCreator('lastName', 'Last Name', 'text'));
     body.append(inputCreator('employeeId', 'ID', 'number'));
     body.append(inputCreator('employeeTitle', 'Title', 'text'));
-    body.append(inputCreator('employeeSalary', 'Annual Salary', 'text'));
+    body.append(inputCreator('employeeSalary', 'Annual Salary', 'number'));
     
     body.append(`<button class="inputClass" id="submitButton">Submit</button>`);
     $('#submitButton').click(function(){
@@ -58,13 +58,28 @@ function dataTable(){
 function addEmployee(){
     //$('table').add($('tr')).data({firstName: $('#firstNameInput').val(), lastName: $('#lastNameInput').val(), employeeId: $('#employeeIdInput').val(), employeeTitle: $('#employeeTitleInput').val(), employeeSalary: $('#employeeSalaryInput').val()});
 
-    $('table').append(`<tr></tr>`);
+    $('table').append(`<tr class="employee"></tr>`);
     $('tr').last().data({firstName: $('#firstNameInput').val(), lastName: $('#lastNameInput').val(), employeeId: $('#employeeIdInput').val(), employeeTitle: $('#employeeTitleInput').val(), employeeSalary: $('#employeeSalaryInput').val()});
     console.log('in addEmployee', $('tr').last().data());
     $('tr').last().append(`<td>${$('#firstNameInput').val()}</td><td>${$('#lastNameInput').val()}</td><td>${$('#employeeIdInput').val()}</td><td>${$('#employeeTitleInput').val()}</td><td>${$('#employeeSalaryInput').val()}</td><td><button class="deleteButton">Delete</button></td>`);
+    monthlyCalculator();
 }
 
 function deleteButtonHandler(){
     console.log('in deleteButtonHandler');
     $(this).parent().parent().remove();
+    monthlyCalculator();
+}
+
+function monthlyCalculator(){
+    let monthlyCost = 0;
+    // console.log('first log', monthlyCost);
+    
+    $('.employee').each(function(){
+        // console.log('second log', $(this).data().employeeSalary);
+        monthlyCost += Number($(this).data().employeeSalary)/12;
+        // console.log('third log', monthlyCost);
+        
+    });
+    $('#totalMonthly').text(monthlyCost);
 }

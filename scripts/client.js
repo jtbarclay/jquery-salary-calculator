@@ -4,6 +4,8 @@
 
 $(readyNow);
 
+const monthlyCostLimit = 20000;
+
 function readyNow(){
     userInputs();
     dataTable();
@@ -82,4 +84,10 @@ function monthlyCalculator(){
         
     });
     $('#totalMonthly').text(monthlyCost);
+
+    if(monthlyCost > monthlyCostLimit){
+        $('#totalMonthly').parent().css("background-color", "red");
+    }else{
+        $('#totalMonthly').parent().css("background-color", "white");
+    }
 }

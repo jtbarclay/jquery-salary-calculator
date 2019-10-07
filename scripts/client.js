@@ -33,7 +33,7 @@ function userInputs(){
     $('#submitButton').click(function(){
         //submit button actions
         addEmployee();
-        console.log('submit click');
+        // console.log('submit click');
         
     });
     body.append(`</div>`);
@@ -49,7 +49,14 @@ function dataTable(){
 
     // create table with header labels
     body.append(`<h3>Employees</h3>`);
-    body.append(`<table><tr><th>First Name</th><th>Last Name</th><th>ID</th><th>Title</th><th>Annual Salary</th><th></th></tr>`);
+    body.append(`<table><tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Annual Salary</th>
+        <th></th></tr>
+    `);
 
     // end table
     body.append(`</table>`);
@@ -62,9 +69,23 @@ function addEmployee(){
     //$('table').add($('tr')).data({firstName: $('#firstNameInput').val(), lastName: $('#lastNameInput').val(), employeeId: $('#employeeIdInput').val(), employeeTitle: $('#employeeTitleInput').val(), employeeSalary: $('#employeeSalaryInput').val()});
 
     $('table').append(`<tr class="employee"></tr>`);
-    $('tr').last().data({firstName: $('#firstNameInput').val(), lastName: $('#lastNameInput').val(), employeeId: $('#employeeIdInput').val(), employeeTitle: $('#employeeTitleInput').val(), employeeSalary: $('#employeeSalaryInput').val()});
-    console.log('in addEmployee', $('tr').last().data());
-    $('tr').last().append(`<td>${$('#firstNameInput').val()}</td><td>${$('#lastNameInput').val()}</td><td>${$('#employeeIdInput').val()}</td><td>${$('#employeeTitleInput').val()}</td><td>${accounting.formatMoney($('#employeeSalaryInput').val())}</td><td><button class="deleteButton">Delete</button></td>`);
+    $('tr').last().data({
+        firstName: $('#firstNameInput').val(), 
+        lastName: $('#lastNameInput').val(), 
+        employeeId: $('#employeeIdInput').val(), 
+        employeeTitle: $('#employeeTitleInput').val(), 
+        employeeSalary: $('#employeeSalaryInput').val()
+    });
+    // console.log('in addEmployee', $('tr').last().data());
+
+    $('tr').last().append(`
+        <td>${$('#firstNameInput').val()}</td>
+        <td>${$('#lastNameInput').val()}</td>
+        <td>${$('#employeeIdInput').val()}</td>
+        <td>${$('#employeeTitleInput').val()}</td>
+        <td>${accounting.formatMoney($('#employeeSalaryInput').val())}</td>
+        <td><button class="deleteButton">Delete</button></td>
+    `);
 
     //empty inputs
     $('#firstNameInput').val('');
@@ -77,7 +98,7 @@ function addEmployee(){
 }
 
 function deleteButtonHandler(){
-    console.log('in deleteButtonHandler');
+    // console.log('in deleteButtonHandler');
     $(this).parent().parent().remove();
     monthlyCalculator();
 }
